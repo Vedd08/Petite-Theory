@@ -53,4 +53,34 @@ router.get('/me', requireAuth, async (req: AuthRequest, res: Response) => {
   }
 });
 
+// PUT /api/auth/credentials - update admin username and password
+router.put('/credentials', requireAuth, async (req: AuthRequest, res: Response) => {
+  try {
+    const { username, password } = req.body;
+    
+    if (!username || !password) {
+      return res.status(400).json({ message: 'Username and password are required' });
+    }
+
+    const admin = await Admin.findById(req.adminId);
+    if (!admin) {
+      return res.status(404).json({ message: 'Admin not found' });
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+    
+    admin.username = username.trim();
+    admin.passwordHash = passwordHash;
+    
+    await admin.save();
+    
+    res.json({ message: 'Credentials updated successfully' });
+  } catch (error: any) {
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Username already exists' });
+    }
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;
