@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=Amita:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-brand: var(--font-logo), cursive;
+  --font-display: var(--font-heading), serif;
+  --font-body: var(--font-body), sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Petite थियोरी Palette */
+    --bg-main: #fbe3e6; /* Pastel pink from mockup */
+    --bg-container: #ffffff;
+    --bg-card: #ffffff;
+    --bg-accent: #111111; /* Black buttons */
+    --bg-accent-hover: #333333;
+
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --text-dark: #ffffff;
+
+    --accent-color: #e57373;
+    --border-color: #f0e6e6;
+
+    /* Typography */
+    --font-logo: 'Amita', cursive;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-body);
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-container);
+  }
+
+  .btn-filled {
+    background-color: var(--bg-accent);
+    color: var(--text-dark);
+    border: none;
+  }
+
+  .btn-filled:hover {
+    background-color: var(--bg-accent-hover);
+    color: var(--text-dark);
+  }
+
+  /* Luxurious Decorative Classes */
+  .fine-line {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .glass-border {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  .text-italic {
+    font-style: italic;
+    font-family: 'Playfair Display', serif; /* A classic serif if available, else fallback */
+    font-weight: 300;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
