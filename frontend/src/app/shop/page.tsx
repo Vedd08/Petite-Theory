@@ -11,7 +11,8 @@ export default function ShopPage() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/products')
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    fetch(`${apiUrl}/products`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

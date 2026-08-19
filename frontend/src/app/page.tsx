@@ -16,7 +16,8 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch products
-    fetch('http://localhost:5000/api/products')
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    fetch(`${apiUrl}/products`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
