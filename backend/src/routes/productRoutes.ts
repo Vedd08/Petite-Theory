@@ -36,8 +36,7 @@ router.post('/', requireAuth, upload.single('image'), async (req: Request, res: 
     let imageUrl = req.body.imageUrl; // Fallback if they pass a URL string instead
 
     if (req.file) {
-      // The file was uploaded to /uploads. We want the client to access it via http://localhost:5000/uploads/...
-      imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      imageUrl = req.file.path;
     }
 
     const product = new Product({
@@ -63,7 +62,7 @@ router.put('/:id', requireAuth, upload.single('image'), async (req: Request, res
     let imageUrl = req.body.imageUrl;
 
     if (req.file) {
-      imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+      imageUrl = req.file.path;
     }
     
     const product = await Product.findById(req.params.id);
