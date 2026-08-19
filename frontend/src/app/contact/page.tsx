@@ -5,9 +5,9 @@ import Footer from "@/components/shared/Footer";
 import PageHeader from "@/components/shared/PageHeader";
 
 const contactMethods = [
-  { icon: MessageCircle, label: "WhatsApp", value: "+91 8866836861", href: "https://wa.me/918866836861" },
-  { icon: Mail, label: "Email", value: "bloomcakes@example.com", href: "mailto:bloomcakes@example.com" },
-  { icon: Camera, label: "Instagram", value: "@bloomcakes.official", href: "https://instagram.com/bloomcakes.official" },
+  { icon: MessageCircle, label: "WhatsApp", value: "+91 88668 36861", href: "https://wa.me/918866836861" },
+  { icon: Mail, label: "Email", value: "hello@petitetheorie.com", href: "mailto:hello@petitetheorie.com" },
+  { icon: Camera, label: "Instagram", value: "@petitetheorie", href: "https://instagram.com/petitetheorie" },
 ];
 
 export default function ContactPage() {
