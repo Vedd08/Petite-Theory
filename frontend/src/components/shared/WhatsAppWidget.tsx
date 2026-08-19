@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Phone, X } from "lucide-react";
+import { X } from "lucide-react";
 import gsap from "gsap";
+import WhatsAppIcon from "./WhatsAppIcon";
 
 const WHATSAPP_NUMBER = "918866836861";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi! I'd love to know more about your cakes.")}`;
@@ -30,7 +31,7 @@ export default function WhatsAppWidget() {
         >
           <div className="relative flex items-center gap-3 bg-[#e0186f] px-5 py-4">
             <span className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[#e0186f]">
-              <Phone size={20} strokeWidth={1.8} />
+              <WhatsAppIcon size={20} />
             </span>
             <div>
               <p className="font-body text-sm font-semibold text-white">Petite थियोरी</p>
@@ -68,7 +69,7 @@ export default function WhatsAppWidget() {
         className="relative grid size-14 place-items-center rounded-full bg-[#e0186f] text-white shadow-[0_10px_30px_rgba(224,24,111,0.4)] transition-transform hover:scale-105 sm:size-16"
       >
         {!open && <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#e0186f]/50" />}
-        {open ? <X size={24} /> : <Phone size={24} />}
+        {open ? <X size={24} /> : <WhatsAppIcon size={26} />}
       </button>
     </div>
   );

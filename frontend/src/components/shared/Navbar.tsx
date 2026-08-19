@@ -48,7 +48,7 @@ export default function Navbar() {
         </Link>
         <nav className="hidden items-center gap-9 font-body text-[0.8rem] font-medium uppercase tracking-[0.18em] lg:flex" aria-label="Main navigation">
           <Link className="transition-opacity hover:opacity-55" href="/shop">Menu</Link>
-          <Link className="transition-opacity hover:opacity-55" href="/#ingredients">Ingredients</Link>
+          <Link className="transition-opacity hover:opacity-55" href="/#menu">Flavors</Link>
           <Link className="transition-opacity hover:opacity-55" href="/about">Our story</Link>
           <Link className="transition-opacity hover:opacity-55" href="/contact">Visit us</Link>
         </nav>
@@ -75,7 +75,7 @@ export default function Navbar() {
       {menuOpen && (
         <nav className="flex flex-col gap-5 border-t border-[#1a1a1a]/10 py-6 font-body text-sm uppercase tracking-[0.16em] lg:hidden">
           <Link href="/shop" onClick={() => setMenuOpen(false)}>Menu</Link>
-          <Link href="/#ingredients" onClick={() => setMenuOpen(false)}>Ingredients</Link>
+          <Link href="/#menu" onClick={() => setMenuOpen(false)}>Flavors</Link>
           <Link href="/about" onClick={() => setMenuOpen(false)}>Our story</Link>
           <Link href="/contact" onClick={() => setMenuOpen(false)}>Visit us</Link>
         </nav>

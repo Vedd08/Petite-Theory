@@ -7,7 +7,7 @@ import HeroSection from "@/components/home/HeroSection";
 import DripDivider from "@/components/home/DripDivider";
 import FeatureStrip from "@/components/home/FeatureStrip";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
-import IngredientsSection from "@/components/home/IngredientsSection";
+import MenuShowcase from "@/components/home/MenuShowcase";
 import { useCart, Product } from "@/context/CartContext";
 
 export default function Home() {
@@ -49,7 +49,7 @@ export default function Home() {
           handleAddToCart={handleAddToCart}
         />
 
-        <IngredientsSection />
+        <MenuShowcase />
 
         <Footer />
       </div>

@@ -1,0 +1,215 @@
+import {
+  Cake,
+  CakeSlice,
+  IceCreamBowl,
+  Cherry,
+  Candy,
+  Cookie,
+  Coffee,
+  Milk,
+  Gift,
+  Sparkles,
+  Donut,
+  Sparkle,
+  Croissant,
+  type LucideIcon,
+} from "lucide-react";
+
+export interface MenuItem {
+  name: string;
+  tag?: "bestseller" | "seasonal";
+}
+
+export interface MenuCategory {
+  name: string;
+  icon: LucideIcon;
+  items: MenuItem[];
+}
+
+export const menuCategories: MenuCategory[] = [
+  {
+    name: "Cakes",
+    icon: Cake,
+    items: [
+      { name: "Belgian chocolate" },
+      { name: "Lindt chocolate, nutella and Ferrero", tag: "bestseller" },
+      { name: "Lindt chocolate mousse" },
+      { name: "Belgian chocolate sea salt caramel" },
+      { name: "Chocolate almond praline", tag: "bestseller" },
+      { name: "Chocolate hazelnut praline" },
+      { name: "Terry's Orange Belgian chocolate" },
+      { name: "Chocolate berries" },
+      { name: "Chocolate biscoff" },
+      { name: "Bounty chocolate" },
+      { name: "Chocolate pistachio kunafa" },
+      { name: "Chocolate hazelnut feuillentine", tag: "bestseller" },
+      { name: "French vanilla" },
+      { name: "Vanilla biscoff" },
+      { name: "Vanilla mix berries" },
+      { name: "Vanilla almond and hazelnut praline" },
+      { name: "Vanilla blueberry" },
+      { name: "Vanilla strawberry", tag: "seasonal" },
+      { name: "Mango mousse", tag: "seasonal" },
+      { name: "Fresh mango, aam ras and raw mango", tag: "seasonal" },
+      { name: "Vanilla motichoor" },
+      { name: "Rasmalai" },
+      { name: "Rose pistachio" },
+      { name: "Pistachio kunafa" },
+    ],
+  },
+  {
+    name: "Cupcakes",
+    icon: CakeSlice,
+    items: [
+      { name: "French vanilla" },
+      { name: "Chocolate ganache and nutella" },
+      { name: "Biscoff mousse" },
+      { name: "White chocolate mousse" },
+      { name: "Dark chocolate mousse" },
+      { name: "Berries mousse" },
+    ],
+  },
+  {
+    name: "Cheesecakes",
+    icon: IceCreamBowl,
+    items: [
+      { name: "White chocolate blueberry" },
+      { name: "White chocolate raspberry" },
+      { name: "Very berry" },
+      { name: "Sea salt caramel" },
+      { name: "Death by brownie" },
+      { name: "Dark and white chocolate with berries" },
+      { name: "Strawberry biscoff" },
+      { name: "Ruby raspberry" },
+      { name: "Chocolate" },
+      { name: "Tender coconut and strawberry" },
+      { name: "French vanilla and coffee" },
+      { name: "Fresh alphonso" },
+      { name: "Turtle cheesecake" },
+      { name: "Triple chocolate" },
+    ],
+  },
+  {
+    name: "Tarts",
+    icon: Cherry,
+    items: [
+      { name: "Lindt chocolate" },
+      { name: "Nutty almond praline with dark chocolate" },
+      { name: "Ferrero rocher" },
+      { name: "Dark chocolate sea salt caramel with a crunch" },
+      { name: "Snickers" },
+      { name: "Hazelnut feuillentine" },
+    ],
+  },
+  {
+    name: "Macarons",
+    icon: Candy,
+    items: [
+      { name: "Sea salt caramel" },
+      { name: "Nutella" },
+      { name: "Coffee" },
+      { name: "Pistachio" },
+      { name: "Mix berries" },
+      { name: "Dark chocolate" },
+    ],
+  },
+  {
+    name: "Gourmet cookies",
+    icon: Cookie,
+    items: [
+      { name: "Chunky melty classy chocolate chunk cookie" },
+      { name: "Devil's chocolate" },
+      { name: "Red velvet" },
+      { name: "Birthday cake" },
+      { name: "Pistachio cranberry" },
+      { name: "Rocky road" },
+      { name: "M&M" },
+      { name: "Dark chocolate brookie" },
+      { name: "Crocky cookie" },
+      { name: "Centerfilled nutella / biscoff" },
+      { name: "Triple chocolate" },
+      { name: "Oats and cranberry" },
+    ],
+  },
+  {
+    name: "Tea cakes",
+    icon: Coffee,
+    items: [
+      { name: "Sugar-free dates and oats nut cake" },
+      { name: "Ghee choco chip cake" },
+      { name: "Gluten-free mawa cake" },
+      { name: "Banana and chocolate walnut cake" },
+      { name: "Carrot cake" },
+      { name: "Butter almond cake" },
+      { name: "Granola cake" },
+    ],
+  },
+  {
+    name: "Tres leches",
+    icon: Milk,
+    items: [
+      { name: "French vanilla milk" },
+      { name: "Rasmalai" },
+      { name: "Thandai" },
+      { name: "Rose pistachio" },
+      { name: "Mango" },
+    ],
+  },
+  {
+    name: "Chocolates",
+    icon: Gift,
+    items: [
+      { name: "Roasted almonds" },
+      { name: "Roasted hazelnuts" },
+      { name: "Mixed nuts and seeds" },
+      { name: "Cranberry pistachio" },
+      { name: "Dried orange" },
+    ],
+  },
+  {
+    name: "Centerfilled chocolates",
+    icon: Sparkles,
+    items: [
+      { name: "Brownie chocolate" },
+      { name: "Belgian ganache" },
+      { name: "Nutella" },
+      { name: "Sea salt caramel" },
+      { name: "Pistachio kunafa" },
+      { name: "Biscoff kunafa" },
+      { name: "Orange belgian ganache" },
+    ],
+  },
+  {
+    name: "Donuts & berliners",
+    icon: Donut,
+    items: [
+      { name: "Belgian chocolate" },
+      { name: "White chocolate" },
+      { name: "Dairy milk" },
+      { name: "Nutella" },
+    ],
+  },
+  {
+    name: "Tiramisu & jar desserts",
+    icon: Sparkle,
+    items: [
+      { name: "Tiramisu" },
+      { name: "Bisco-Misu" },
+      { name: "Centerfilled pizookie" },
+      { name: "Granola" },
+    ],
+  },
+  {
+    name: "Brownies",
+    icon: Croissant,
+    items: [
+      { name: "Walnut" },
+      { name: "Hazelnut" },
+      { name: "Nutella" },
+      { name: "Chocolate ganache" },
+      { name: "Pistachio kunafa" },
+      { name: "White chocolate ganache" },
+      { name: "Ferrero rocher" },
+    ],
+  },
+];
