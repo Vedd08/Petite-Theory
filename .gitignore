@@ -1,0 +1,5 @@
+# Root Ignore
+temp_v0/
+*.zip
+.env
+.DS_Store
