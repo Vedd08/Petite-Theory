@@ -40,22 +40,27 @@ export default function SettingsPage() {
 
   return (
     <ProtectedRoute>
-      <div className="admin-layout">
+      <div className="admin-container">
         <Sidebar />
-        <main className="admin-main">
-          <div className="admin-header">
-            <h2>Account Settings</h2>
-            <p>Update your admin username and password.</p>
-          </div>
+        <main className="content">
+          <header>
+            <div>
+              <h1>Account Settings</h1>
+              <p className="page-subtitle">Update your admin username and password.</p>
+            </div>
+          </header>
 
           {message && (
-            <div className={`alert alert-${message.type}`} style={{ marginBottom: '20px' }}>
+            <div className={`banner banner-${message.type}`} style={{ marginBottom: '20px' }}>
               {message.text}
             </div>
           )}
 
-          <div className="admin-card">
-            <form onSubmit={handleSubmit} className="admin-form">
+          <div className="card form-card" style={{ maxWidth: '500px' }}>
+            <div className="form-card-header">
+              <h3>Change Credentials</h3>
+            </div>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>New Username</label>
                 <input
