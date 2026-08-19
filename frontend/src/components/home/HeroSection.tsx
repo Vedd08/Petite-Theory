@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Leaf from "./Leaf";
 import BerryBlob from "./BerryBlob";
+import EiffelTowerIcon from "./EiffelTowerIcon";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,21 +19,12 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".hero-reveal", {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.2,
-      });
-
       gsap.from(imageRef.current, {
         scale: 0.9,
         opacity: 0,
         duration: 1.5,
         ease: "power3.out",
-        delay: 0.4,
+        delay: 0.2,
       });
 
       gsap.to(imageRef.current, {
@@ -41,7 +33,7 @@ export default function HeroSection() {
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        delay: 1.5,
+        delay: 1.3,
       });
 
       gsap.from(badgeRef.current, {
@@ -49,7 +41,7 @@ export default function HeroSection() {
         opacity: 0,
         duration: 0.8,
         ease: "back.out(1.7)",
-        delay: 1.2,
+        delay: 1,
       });
 
       [leaf1.current, leaf2.current, leaf3.current].forEach((leaf, i) => {
@@ -73,6 +65,15 @@ export default function HeroSection() {
       id="top"
       className="relative grid items-center gap-10 pb-24 pt-8 sm:pb-32 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:pb-40 lg:pt-12"
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 overflow-hidden select-none"
+      >
+        <span className="absolute left-[2%] top-[22%] -rotate-6 whitespace-nowrap font-script text-[5rem] leading-none text-[#6d1130]/9 sm:left-[-2%] sm:top-[10%] sm:text-[11rem] lg:top-[14%] lg:text-[15rem]">
+          Paris
+        </span>
+      </div>
+
       <div ref={leaf1} className="pointer-events-none absolute -left-3 top-[6%] hidden sm:block">
         <Leaf className="h-12 w-8 -rotate-[20deg] opacity-80" />
       </div>
@@ -84,22 +85,26 @@ export default function HeroSection() {
       </div>
 
       <div className="relative max-w-xl">
-        <h1 className="hero-reveal font-display text-[clamp(2.6rem,6.4vw,5.4rem)] font-bold uppercase leading-[0.98] tracking-[-0.02em] text-[#6d1130]">
+        <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#6d1130] shadow-[0_4px_14px_rgba(109,17,48,0.08)]">
+          <EiffelTowerIcon size={12} className="text-[#d81159]" />
+          Born in France, perfected in Surat
+        </div>
+        <h1 className="font-display text-[clamp(2.6rem,6.4vw,5.4rem)] font-bold uppercase leading-[0.98] tracking-[-0.02em] text-[#6d1130]">
           Small cakes,
           <br />
           big feelings.
         </h1>
-        <p className="hero-reveal mt-5 inline-flex items-center gap-1.5 font-body text-sm font-medium text-[#d81159]">
+        <p className="mt-5 inline-flex items-center gap-1.5 font-body text-sm font-medium text-[#d81159]">
           crafted in small batches
           <ChevronDown size={15} className="mt-0.5" />
         </p>
-        <p className="hero-reveal mt-6 max-w-sm font-body text-base font-light leading-7 text-[#5b4048] sm:text-lg">
+        <p className="mt-6 max-w-sm font-body text-base font-light leading-7 text-[#5b4048] sm:text-lg">
           If you love beautiful desserts but refuse to compromise on taste, our
           cakes were made for you.
         </p>
         <Link
           href="/#creations"
-          className="hero-reveal mt-9 inline-flex items-center gap-3 rounded-full bg-[#e0186f] px-7 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_10px_25px_rgba(224,24,111,0.28)] transition-transform hover:-translate-y-1"
+          className="mt-9 inline-flex items-center gap-3 rounded-full bg-[#e0186f] px-7 py-3.5 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_10px_25px_rgba(224,24,111,0.28)] transition-transform hover:-translate-y-1"
         >
           View menu <ArrowUpRight size={15} />
         </Link>

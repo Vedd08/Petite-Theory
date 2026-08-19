@@ -8,9 +8,10 @@ import WhatsAppIcon from "./WhatsAppIcon";
 
 const WHATSAPP_NUMBER = "918866836861";
 const WHATSAPP_DISPLAY = "+91 88668 36861";
-const EMAIL = "hello@petitetheorie.com";
-const INSTAGRAM_HANDLE = "@petitetheorie";
-const ADDRESS = "123 Bakery Lane, Sweet District, City";
+const EMAIL = "petitetheory.india@gmail.com";
+const INSTAGRAM_HANDLE = "petitetheory.india";
+const ADDRESS = "UG-37, Highfield Ascot, Vesu, Surat, Gujarat 395007";
+const MAPS_LINK = "https://maps.app.goo.gl/k2bVHMZ1a1fWtMnB6?g_st=ic";
 
 const EXPLORE_LINKS = [
   { href: "/shop", label: "Menu" },
@@ -61,6 +62,8 @@ export default function Footer() {
             <Image src="/logo-wordmark.png" alt="Petite थियोरी" width={1670} height={314} className="h-8 w-auto" />
             <p className="mt-4 max-w-xs font-body text-sm font-light leading-6 text-[#5b4048]">
               Small-batch artisanal cakes, hand-finished with love for every celebration.
+              <br /><br />
+              <strong>Founder:</strong> Chef. Priyanshi
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
@@ -73,7 +76,7 @@ export default function Footer() {
                 <WhatsAppIcon size={17} />
               </a>
               <a
-                href="https://instagram.com/petitetheorie"
+                href={`https://instagram.com/${INSTAGRAM_HANDLE}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
@@ -113,8 +116,10 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin size={15} className="mt-0.5 shrink-0 text-[#d81159]" />
-                <span>{ADDRESS}</span>
+                <a href={MAPS_LINK} target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 transition-colors hover:text-[#d81159]">
+                  <MapPin size={15} className="mt-0.5 shrink-0 text-[#d81159]" />
+                  <span className="max-w-[200px]">{ADDRESS}</span>
+                </a>
               </li>
             </ul>
           </div>

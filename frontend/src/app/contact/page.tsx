@@ -6,8 +6,8 @@ import PageHeader from "@/components/shared/PageHeader";
 
 const contactMethods = [
   { icon: MessageCircle, label: "WhatsApp", value: "+91 88668 36861", href: "https://wa.me/918866836861" },
-  { icon: Mail, label: "Email", value: "hello@petitetheorie.com", href: "mailto:hello@petitetheorie.com" },
-  { icon: Camera, label: "Instagram", value: "@petitetheorie", href: "https://instagram.com/petitetheorie" },
+  { icon: Mail, label: "Email", value: "petitetheory.india@gmail.com", href: "mailto:petitetheory.india@gmail.com" },
+  { icon: Camera, label: "Instagram", value: "@petitetheory.india", href: "https://instagram.com/petitetheory.india" },
 ];
 
 export default function ContactPage() {
@@ -46,7 +46,7 @@ export default function ContactPage() {
             <div>
               <p className="font-body text-[0.68rem] uppercase tracking-[0.25em] text-[#a1284f]">Find us</p>
               <h2 className="mt-3 font-display text-2xl font-semibold text-[#6d1130] sm:text-3xl">
-                123 Bakery Lane, Sweet District, City
+                Vesu, Surat
               </h2>
             </div>
           </div>
