@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
-import styles from "../page.module.css";
-import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
+import Footer from "@/components/shared/Footer";
+import PageHeader from "@/components/shared/PageHeader";
+import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
+import { useCart } from "@/context/CartContext";
 
 export default function CheckoutPage() {
-  const { cart, getCartTotal, removeFromCart, updateQuantity, clearCart } = useCart();
-  
+  const { cart, getCartTotal, removeFromCart, updateQuantity } = useCart();
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -17,25 +18,24 @@ export default function CheckoutPage() {
     deliveryDate: "",
     deliveryTime: "",
     address: "",
-    specialInstructions: ""
+    specialInstructions: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleCheckout = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (cart.length === 0) {
       alert("Your cart is empty!");
       return;
     }
 
-    // Format the WhatsApp message
     let message = `*NEW ORDER - Petite थियोरी*%0A%0A`;
-    
+
     message += `*CUSTOMER DETAILS*%0A`;
     message += `Name: ${formData.name}%0A`;
     message += `Phone: ${formData.phone}%0A`;
@@ -44,150 +44,168 @@ export default function CheckoutPage() {
     message += `Delivery Time: ${formData.deliveryTime}%0A`;
     message += `Address: ${formData.address}%0A`;
     if (formData.specialInstructions) message += `Notes: ${formData.specialInstructions}%0A`;
-    
+
     message += `%0A*ORDER SUMMARY*%0A`;
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.product.title} (x${item.quantity}) - ₹${item.product.price * item.quantity}%0A`;
     });
-    
+
     message += `%0A*TOTAL: ₹${getCartTotal()}*%0A`;
-    
+
     const phone = "918866836861";
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-    
-    // clearCart();
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
   };
 
+  const inputClass =
+    "w-full rounded-xl border border-[#ecdde1] bg-white px-4 py-3 font-body text-sm text-[#1a1a1a] outline-none transition-colors placeholder:text-[#a99098] focus:border-[#e0186f]";
+  const labelClass = "mb-1.5 block font-body text-xs font-semibold uppercase tracking-[0.1em] text-[#5b4048]";
+
   return (
-    <main className={styles.main}>
-      <div className={styles.mainWrapper}>
-        <Navbar />
+    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
+      <PageHeader
+        eyebrow="Almost there"
+        title="Checkout"
+        subtitle="Review your order below, then send it our way — we'll confirm everything over WhatsApp."
+      />
 
-        <section style={{ padding: '4rem 4rem 2rem', textAlign: 'center', backgroundColor: '#f4f4f5' }}>
-          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '3.5rem', color: 'var(--text-primary)', marginBottom: '0.5rem', letterSpacing: '1px' }}>
-            CHECKOUT
-          </h1>
-        </section>
-
-        <section style={{ padding: '4rem', display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem' }}>
-          
-          {/* Cart Summary (Left) */}
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
+        <section className="grid grid-cols-1 gap-10 py-16 sm:py-20 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
+          {/* Cart Summary */}
           <div>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '2rem', color: 'var(--text-primary)' }}>YOUR CART</h2>
-            
+            <h2 className="mb-6 font-display text-2xl font-semibold text-[#6d1130]">Your cart</h2>
+
             {cart.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '3rem', backgroundColor: '#f9f9f9', borderRadius: '12px' }}>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Your cart is currently empty.</p>
-                <Link href="/shop" className="btn btn-filled" style={{ padding: '0.6rem 1.5rem' }}>
-                  CONTINUE SHOPPING
+              <div className="rounded-3xl bg-[#faf0f2] px-6 py-14 text-center">
+                <ShoppingBag className="mx-auto mb-4 text-[#c98a9c]" size={32} strokeWidth={1.4} />
+                <p className="mb-5 font-body text-sm text-[#5b4048]">Your cart is currently empty.</p>
+                <Link
+                  href="/shop"
+                  className="inline-flex items-center rounded-full bg-[#e0186f] px-6 py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_18px_rgba(224,24,111,0.28)] transition-transform hover:-translate-y-0.5"
+                >
+                  Continue shopping
                 </Link>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {cart.map(item => (
-                  <div key={item.product._id} style={{ display: 'flex', gap: '1rem', borderBottom: '1px solid #eee', paddingBottom: '1.5rem' }}>
-                    <img 
-                      src={item.product.imageUrl || "/cakes/cake-6.png"} 
-                      alt={item.product.title} 
-                      style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover' }} 
+              <div className="flex flex-col gap-4">
+                {cart.map((item) => (
+                  <div key={item.product._id} className="flex gap-4 rounded-2xl bg-[#faf0f2] p-3">
+                    <img
+                      src={item.product.imageUrl || "/cakes/cake-6.png"}
+                      alt={item.product.title}
+                      className="size-20 shrink-0 rounded-xl object-cover"
                     />
-                    <div style={{ flexGrow: 1 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', color: 'var(--text-primary)' }}>{item.product.title}</h4>
-                        <span style={{ fontWeight: 700 }}>₹{item.product.price * item.quantity}</span>
+                    <div className="flex min-w-0 flex-1 flex-col">
+                      <div className="flex items-start justify-between gap-2">
+                        <h4 className="font-display text-base font-semibold leading-tight text-[#1a1a1a]">
+                          {item.product.title}
+                        </h4>
+                        <span className="shrink-0 font-body text-sm font-semibold text-[#6d1130]">
+                          ₹{item.product.price * item.quantity}
+                        </span>
                       </div>
-                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>₹{item.product.price} each</p>
-                      
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <button 
+                      <p className="mt-0.5 font-body text-xs text-[#8a6a75]">₹{item.product.price} each</p>
+
+                      <div className="mt-2.5 flex items-center justify-between">
+                        <div className="flex items-center gap-1 rounded-full bg-white px-1 py-1">
+                          <button
                             type="button"
                             onClick={() => updateQuantity(item.product._id, item.quantity - 1)}
-                            style={{ width: '24px', height: '24px', borderRadius: '4px', border: '1px solid #ccc', backgroundColor: '#fff', cursor: 'pointer' }}
-                          >-</button>
-                          <span>{item.quantity}</span>
-                          <button 
+                            aria-label="Decrease quantity"
+                            className="grid size-6 place-items-center rounded-full text-[#6d1130] transition-colors hover:bg-[#fbe3e6]"
+                          >
+                            <Minus size={13} />
+                          </button>
+                          <span className="min-w-[1.25rem] text-center font-body text-xs font-medium">{item.quantity}</span>
+                          <button
                             type="button"
                             onClick={() => updateQuantity(item.product._id, item.quantity + 1)}
-                            style={{ width: '24px', height: '24px', borderRadius: '4px', border: '1px solid #ccc', backgroundColor: '#fff', cursor: 'pointer' }}
-                          >+</button>
+                            aria-label="Increase quantity"
+                            className="grid size-6 place-items-center rounded-full text-[#6d1130] transition-colors hover:bg-[#fbe3e6]"
+                          >
+                            <Plus size={13} />
+                          </button>
                         </div>
-                        <button 
+                        <button
                           type="button"
                           onClick={() => removeFromCart(item.product._id)}
-                          style={{ color: '#dc2626', fontSize: '0.8rem', textDecoration: 'underline', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}
+                          aria-label="Remove item"
+                          className="grid size-7 place-items-center rounded-full text-[#b3475c] transition-colors hover:bg-[#fbe3e6]"
                         >
-                          Remove
+                          <Trash2 size={14} />
                         </button>
                       </div>
                     </div>
                   </div>
                 ))}
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', paddingTop: '1rem', borderTop: '2px solid var(--text-primary)' }}>
-                  <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem' }}>TOTAL</span>
-                  <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem' }}>₹{getCartTotal()}</span>
+
+                <div className="mt-2 flex items-center justify-between border-t border-[#1a1a1a]/10 pt-4">
+                  <span className="font-display text-lg font-semibold text-[#1a1a1a]">Total</span>
+                  <span className="font-display text-lg font-semibold text-[#6d1130]">₹{getCartTotal()}</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Checkout Form (Right) */}
-          <div style={{ backgroundColor: '#f9f9f9', padding: '3rem', borderRadius: '12px' }}>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', marginBottom: '2rem', color: 'var(--text-primary)' }}>DELIVERY DETAILS</h2>
-            
-            <form onSubmit={handleCheckout} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Full Name *</label>
-                  <input required type="text" name="name" value={formData.name} onChange={handleChange} style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit' }} />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Phone Number *</label>
-                  <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit' }} />
-                </div>
-              </div>
+          {/* Checkout Form */}
+          <div className="rounded-[2rem] bg-[#fbe3e6]/40 p-6 sm:p-10">
+            <h2 className="mb-6 font-display text-2xl font-semibold text-[#6d1130]">Delivery details</h2>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Email Address</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit' }} />
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Delivery Date *</label>
-                  <input required type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit' }} />
+            <form onSubmit={handleCheckout} className="flex flex-col gap-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                  <label className={labelClass}>Full name *</label>
+                  <input required type="text" name="name" value={formData.name} onChange={handleChange} className={inputClass} />
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Delivery Time *</label>
-                  <input required type="time" name="deliveryTime" value={formData.deliveryTime} onChange={handleChange} style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit' }} />
+                <div>
+                  <label className={labelClass}>Phone number *</label>
+                  <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className={inputClass} />
                 </div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Delivery Address *</label>
-                <textarea required name="address" value={formData.address} onChange={handleChange} rows={3} style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit', resize: 'vertical' }}></textarea>
+              <div>
+                <label className={labelClass}>Email address</label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className={inputClass} />
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <label style={{ fontSize: '0.9rem', fontWeight: 600 }}>Special Instructions (Optional)</label>
-                <textarea name="specialInstructions" value={formData.specialInstructions} onChange={handleChange} rows={2} placeholder="E.g., Write 'Happy Birthday'" style={{ padding: '0.8rem', borderRadius: '6px', border: '1px solid #ccc', fontFamily: 'inherit', resize: 'vertical' }}></textarea>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div>
+                  <label className={labelClass}>Delivery date *</label>
+                  <input required type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} className={inputClass} />
+                </div>
+                <div>
+                  <label className={labelClass}>Delivery time *</label>
+                  <input required type="time" name="deliveryTime" value={formData.deliveryTime} onChange={handleChange} className={inputClass} />
+                </div>
               </div>
 
-              <button 
-                type="submit" 
-                className="btn btn-filled" 
+              <div>
+                <label className={labelClass}>Delivery address *</label>
+                <textarea required name="address" value={formData.address} onChange={handleChange} rows={3} className={`${inputClass} resize-y`} />
+              </div>
+
+              <div>
+                <label className={labelClass}>Special instructions (optional)</label>
+                <textarea
+                  name="specialInstructions"
+                  value={formData.specialInstructions}
+                  onChange={handleChange}
+                  rows={2}
+                  placeholder="E.g., Write 'Happy Birthday'"
+                  className={`${inputClass} resize-y`}
+                />
+              </div>
+
+              <button
+                type="submit"
                 disabled={cart.length === 0}
-                style={{ marginTop: '1rem', padding: '1rem', fontSize: '1rem', letterSpacing: '1px', opacity: cart.length === 0 ? 0.5 : 1, cursor: cart.length === 0 ? 'not-allowed' : 'pointer', border: 'none' }}
+                className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[#e0186f] py-3.5 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white shadow-[0_10px_25px_rgba(224,24,111,0.28)] transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
               >
-                PLACE ORDER VIA WHATSAPP
+                <WhatsAppIcon size={16} /> Place order via WhatsApp
               </button>
             </form>
           </div>
-
         </section>
-        
+
         <Footer />
       </div>
     </main>
