@@ -12,7 +12,7 @@ export default function DripDivider({ color = "#ffffff", flip = false }: DripDiv
       <svg
         viewBox="0 0 1440 90"
         preserveAspectRatio="none"
-        className="block h-[36px] w-full sm:h-[56px] lg:h-[80px]"
+        className="block h-[36px] w-full sm:h-[56px] lg:h-[140px]"
       >
         <path
           fill={color}

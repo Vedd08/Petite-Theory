@@ -33,12 +33,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
-      <div className="relative bg-[#fbe3e6]">
+      <div className="relative bg-[#fbe3e6] ">
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
           <Navbar />
           <HeroSection />
         </div>
-        <DripDivider />
+        <DripDivider flip />
       </div>
 
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
