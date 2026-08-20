@@ -70,13 +70,14 @@ export default function HeroSection() {
       id="top"
       className="relative isolate transform-gpu overflow-hidden rounded-[2.5rem] bg-[#fbe3e6] sm:rounded-[3.5rem] lg:rounded-[4rem]"
     >
-      <div ref={imageRef} className="absolute inset-0 -z-10 transform-gpu overflow-hidden">
+      <div ref={imageRef} className="absolute inset-0 h-full w-full -z-10 transform-gpu overflow-hidden">
         <Image
           src="/paris-sketch.jpg"
           alt="Watercolor sketch of the Eiffel Tower, Arc de Triomphe, and a Parisian café"
           fill
           priority
-          className="object-cover object-[38%_center] opacity-60 sm:object-[55%_center] lg:object-center"
+          sizes="100vw"
+          className="scale-125 object-cover object-[38%_40%] opacity-25 sm:object-[55%_45%] lg:object-[center_45%]"
         />
       </div>
 
