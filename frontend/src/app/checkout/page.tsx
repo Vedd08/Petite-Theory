@@ -111,7 +111,7 @@ export default function CheckoutPage() {
                             type="button"
                             onClick={() => updateQuantity(item.product._id, item.quantity - 1)}
                             aria-label="Decrease quantity"
-                            className="grid size-6 place-items-center rounded-full text-[#6d1130] transition-colors hover:bg-[#fbe3e6]"
+                            className="grid size-8 place-items-center rounded-full text-[#6d1130] transition-colors hover:bg-[#fbe3e6]"
                           >
                             <Minus size={13} />
                           </button>
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
                             type="button"
                             onClick={() => updateQuantity(item.product._id, item.quantity + 1)}
                             aria-label="Increase quantity"
-                            className="grid size-6 place-items-center rounded-full text-[#6d1130] transition-colors hover:bg-[#fbe3e6]"
+                            className="grid size-8 place-items-center rounded-full text-[#6d1130] transition-colors hover:bg-[#fbe3e6]"
                           >
                             <Plus size={13} />
                           </button>
@@ -129,7 +129,7 @@ export default function CheckoutPage() {
                           type="button"
                           onClick={() => removeFromCart(item.product._id)}
                           aria-label="Remove item"
-                          className="grid size-7 place-items-center rounded-full text-[#b3475c] transition-colors hover:bg-[#fbe3e6]"
+                          className="grid size-8 place-items-center rounded-full text-[#b3475c] transition-colors hover:bg-[#fbe3e6]"
                         >
                           <Trash2 size={14} />
                         </button>

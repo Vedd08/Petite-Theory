@@ -27,7 +27,7 @@ export default function PageHeader({ eyebrow, title, subtitle }: PageHeaderProps
           )}
         </div>
       </div>
-      <DripDivider />
+      <DripDivider flip />
     </div>
   );
 }

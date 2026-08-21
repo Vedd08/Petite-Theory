@@ -14,6 +14,8 @@ export default function Sidebar() {
       <img src="/logo-wordmark.png" alt="Petite थियोरी" className="sidebar-logo" />
       <nav>
         <Link href="/admin" className={pathname === '/admin' ? 'active' : ''}>Products</Link>
+        <Link href="/admin/hampers" className={pathname === '/admin/hampers' ? 'active' : ''}>Hampers</Link>
+        <Link href="/admin/offers" className={pathname === '/admin/offers' ? 'active' : ''}>Offers</Link>
         <Link href="/admin/settings" className={pathname === '/admin/settings' ? 'active' : ''}>Settings</Link>
       </nav>
       <div className="sidebar-footer">

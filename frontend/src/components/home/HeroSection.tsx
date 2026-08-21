@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { ArrowUpRight, ChevronDown, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Leaf from "./Leaf";
 import BerryBlob from "./BerryBlob";
@@ -11,26 +11,37 @@ import EiffelTowerIcon from "./EiffelTowerIcon";
 import FlourishDivider from "./FlourishDivider";
 import CornerFlourish from "./CornerFlourish";
 
+interface Offer {
+  _id: string;
+  title: string;
+  discountLabel?: string;
+  code?: string;
+  imageUrl?: string;
+  ctaLink?: string;
+}
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
   const leaf1 = useRef<HTMLDivElement>(null);
   const leaf2 = useRef<HTMLDivElement>(null);
   const leaf3 = useRef<HTMLDivElement>(null);
   const blobRef = useRef<HTMLDivElement>(null);
+  const [offer, setOffer] = useState<Offer | null>(null);
+
+  useEffect(() => {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+    fetch(`${apiUrl}/offers/active`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) setOffer(data[0]);
+      })
+      .catch((err) => console.error("Error fetching offers:", err));
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(imageRef.current, {
-        scale: 1.06,
-        opacity: 0,
-        duration: 1.4,
-        ease: "power3.out",
-        clearProps: "transform,opacity",
-      });
-
       gsap.from(contentRef.current, {
         y: 24,
         opacity: 0,
@@ -70,25 +81,24 @@ export default function HeroSection() {
       id="top"
       className="relative isolate transform-gpu overflow-hidden rounded-[2.5rem] bg-[#fbe3e6] sm:rounded-[3.5rem] lg:rounded-[4rem]"
     >
-      <div ref={imageRef} className="absolute inset-0 h-full w-full -z-10 transform-gpu overflow-hidden">
-        <Image
-          src="/paris-sketch.jpg"
-          alt="Watercolor sketch of the Eiffel Tower, Arc de Triomphe, and a Parisian café"
-          fill
-          priority
-          sizes="100vw"
-          className="scale-125 object-cover object-[38%_40%] opacity-25 sm:object-[55%_45%] lg:object-[center_45%]"
-        />
-      </div>
-
       <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 lg:block xl:right-10">
         <div className="relative aspect-[1.05/1] w-96 overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_25px_70px_rgba(109,17,48,0.28)] xl:w-160">
-          <Image
-            src="/cakes/hero-cake-new.jpg"
-            alt="White frosted cake decorated with fresh flowers"
-            fill
-            className="object-cover"
-          />
+          {offer?.imageUrl ? (
+            // Cloudinary URL — plain <img> avoids next/image's remote-domain allowlist requirement
+            <img
+              src={offer.imageUrl}
+              alt={offer.title}
+              className="absolute inset-0 h-full w-full object-contain bg-white"
+            />
+          ) : (
+            <Image
+              src="/cakes/hero-cake-new.jpg"
+              alt="White frosted cake decorated with fresh flowers"
+              fill
+              sizes="(min-width: 1280px) 640px, 384px"
+              className="object-cover"
+            />
+          )}
         </div>
         <div className="pointer-events-none absolute -left-2 -top-2 text-[#d81159]/70">
           <CornerFlourish className="h-9 w-9 sm:h-12 sm:w-12" />
@@ -120,10 +130,36 @@ export default function HeroSection() {
 
       <div className="relative px-6 py-14 sm:px-10 sm:py-20 lg:px-16 lg:py-28">
         <div ref={contentRef} className="max-w-xl">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#6d1130] shadow-[0_4px_14px_rgba(109,17,48,0.08)]">
-            <EiffelTowerIcon size={12} className="text-[#d81159]" />
-            Born in France, perfected in Surat
-          </div>
+          {(() => {
+            const badgeClassName = offer
+              ? "mb-5 inline-flex items-center gap-2 rounded-full bg-[#e0186f] px-4 py-2 font-body text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_20px_rgba(224,24,111,0.3)] transition-transform hover:-translate-y-0.5"
+              : "mb-5 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#6d1130] shadow-[0_4px_14px_rgba(109,17,48,0.08)]";
+
+            const badgeContent = offer ? (
+              <>
+                <Sparkles size={12} />
+                {offer.discountLabel ? `${offer.discountLabel} — ${offer.title}` : offer.title}
+                {offer.code && (
+                  <span className="rounded-full bg-white/20 px-2 py-0.5 normal-case tracking-normal">
+                    {offer.code}
+                  </span>
+                )}
+              </>
+            ) : (
+              <>
+                <EiffelTowerIcon size={12} className="text-[#d81159]" />
+                Born in France, perfected in Surat
+              </>
+            );
+
+            return offer?.ctaLink ? (
+              <Link href={offer.ctaLink} className={badgeClassName}>
+                {badgeContent}
+              </Link>
+            ) : (
+              <div className={badgeClassName}>{badgeContent}</div>
+            );
+          })()}
           <h1 className="font-display text-[clamp(2.6rem,6.4vw,5.4rem)] font-bold uppercase leading-[0.98] tracking-[-0.02em] text-[#6d1130] [text-shadow:0_0_1px_#fbe3e6,0_0_1px_#fbe3e6,0_0_4px_#fbe3e6,0_0_4px_#fbe3e6,0_0_10px_#fbe3e6,0_0_20px_#fbe3e6,0_0_34px_#fbe3e6]">
             Small cakes,
             <br />

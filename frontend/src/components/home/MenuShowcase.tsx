@@ -6,6 +6,7 @@ import { menuCategories } from "@/data/menuCategories";
 import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 
 const WHATSAPP_NUMBER = "918866836861";
+const DEFAULT_VISIBLE_CATEGORIES = 6;
 
 function waLink(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -13,6 +14,11 @@ function waLink(message: string) {
 
 export default function MenuShowcase() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [showAllCategories, setShowAllCategories] = useState(false);
+
+  const visibleCategories = showAllCategories
+    ? menuCategories
+    : menuCategories.slice(0, DEFAULT_VISIBLE_CATEGORIES);
 
   return (
     <section id="menu" className="my-10 rounded-[2.5rem] bg-gradient-to-b from-[#fbe3e6] to-[#f6d4da] px-6 py-16 sm:my-14 sm:px-10 sm:py-20 lg:px-16">
@@ -27,7 +33,7 @@ export default function MenuShowcase() {
       </div>
 
       <div className="mx-auto mt-12 max-w-3xl overflow-hidden rounded-[2rem] bg-white/80 shadow-[0_20px_60px_rgba(109,17,48,0.1)] backdrop-blur-sm">
-        {menuCategories.map((category, index) => {
+        {visibleCategories.map((category, index) => {
           const isOpen = openIndex === index;
           const Icon = category.icon;
           return (
@@ -35,13 +41,13 @@ export default function MenuShowcase() {
               <button
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 aria-expanded={isOpen}
-                className="flex w-full items-center gap-4 px-5 py-5 text-left transition-colors hover:bg-[#fbe3e6]/40 sm:px-8"
+                className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-[#fbe3e6]/40 sm:gap-4 sm:px-8 sm:py-5"
               >
                 <span className="hidden font-body text-xs font-medium text-[#c98a9c] sm:block">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#fbe3e6] text-[#d81159]">
-                  <Icon size={19} strokeWidth={1.6} />
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#fbe3e6] text-[#d81159] sm:size-11">
+                  <Icon size={18} strokeWidth={1.6} />
                 </span>
                 <span className="flex-1">
                   <span className="block font-display text-lg font-semibold text-[#3a2530] sm:text-xl">
@@ -95,6 +101,21 @@ export default function MenuShowcase() {
           );
         })}
       </div>
+
+      {menuCategories.length > DEFAULT_VISIBLE_CATEGORIES && (
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={() => setShowAllCategories((v) => !v)}
+            className="inline-flex items-center gap-2 rounded-full border border-[#d81159]/25 bg-white px-6 py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-[#6d1130] transition-colors hover:bg-[#fbe3e6]/50"
+          >
+            {showAllCategories ? "Show fewer categories" : `Show all ${menuCategories.length} categories`}
+            <ChevronDown
+              size={14}
+              className={`transition-transform duration-300 ${showAllCategories ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
+      )}
 
       <div className="mx-auto mt-12 max-w-md text-center">
         <p className="font-body text-lg font-medium text-[#6d1130] sm:text-xl">Craving something specific?</p>

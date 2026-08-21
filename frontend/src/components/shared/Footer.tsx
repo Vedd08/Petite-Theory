@@ -56,7 +56,7 @@ export default function Footer() {
       </section>
 
       <footer id="footer" className="mt-4 rounded-t-[2.5rem] bg-[#faf0f2] px-6 pt-14 sm:px-10 lg:px-16">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 pb-14 lg:grid-cols-[1.3fr_0.9fr_1fr_1.1fr] lg:gap-10">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 pb-14 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-[1.3fr_0.9fr_1fr_1.1fr] lg:gap-10">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
             <Image src="/logo-wordmark.png" alt="Petite थियोरी" width={1670} height={314} className="h-8 w-auto" />

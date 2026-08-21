@@ -9,6 +9,7 @@ import gsap from "gsap";
 
 const NAV_LINKS = [
   { href: "/shop", label: "Menu" },
+  { href: "/hampers", label: "Hampers" },
   { href: "/#menu", label: "Flavors" },
   { href: "/about", label: "Our story" },
   { href: "/contact", label: "Visit us" },
@@ -88,7 +89,7 @@ export default function Navbar() {
           >
             Order now
           </Link>
-          <Link ref={cartIconRef} href="/checkout" aria-label="Shopping bag" className="relative grid size-9 shrink-0 place-items-center rounded-full transition-colors hover:bg-white/60 sm:size-10">
+          <Link ref={cartIconRef} href="/checkout" aria-label="Shopping bag" className="relative grid size-10 shrink-0 place-items-center rounded-full transition-colors hover:bg-white/60">
             <ShoppingBag size={19} strokeWidth={1.6} />
             {totalItems > 0 && (
               <span className="absolute right-0 top-0 grid size-4 place-items-center rounded-full bg-[#e0186f] text-[9px] text-white">
@@ -100,7 +101,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="grid size-9 shrink-0 place-items-center rounded-full bg-white/70 transition-colors hover:bg-white sm:size-10 lg:hidden"
+            className="grid size-10 shrink-0 place-items-center rounded-full bg-white/70 transition-colors hover:bg-white lg:hidden"
           >
             {menuOpen ? <X size={19} /> : <Menu size={19} />}
           </button>

@@ -23,6 +23,7 @@ export default function AboutPage() {
               src="/cakes/cake-3.png"
               alt="A Petite थियोरी celebration cake"
               fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
               className="object-cover"
             />
           </div>
