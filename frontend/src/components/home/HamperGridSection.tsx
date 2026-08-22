@@ -59,8 +59,8 @@ export default function HamperGridSection({
           <p className="col-span-full text-center text-[#666666]">
             {hampers.length === 0 ? "No hampers available right now — check back soon!" : "No hampers in this category yet."}
           </p>
-        ) : visibleHampers.map((hamper, index) => (
-          <HamperCard key={hamper._id} hamper={hamper} index={index} />
+        ) : visibleHampers.map((hamper) => (
+          <HamperCard key={hamper._id} hamper={hamper} />
         ))}
       </div>
     </section>

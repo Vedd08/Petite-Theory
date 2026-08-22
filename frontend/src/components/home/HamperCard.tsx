@@ -18,10 +18,9 @@ export interface Hamper {
 
 interface HamperCardProps {
   hamper: Hamper;
-  index?: number;
 }
 
-export default function HamperCard({ hamper, index = 0 }: HamperCardProps) {
+export default function HamperCard({ hamper }: HamperCardProps) {
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -66,18 +65,18 @@ export default function HamperCard({ hamper, index = 0 }: HamperCardProps) {
 
   return (
     <article className="product-card group rounded-3xl bg-white p-3 shadow-[0_10px_40px_rgba(100,45,55,0.06)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(100,45,55,0.12)]">
-      <div className={`relative aspect-[4/5] overflow-hidden rounded-[1.4rem] ${index % 2 === 0 ? 'bg-[#fbe3e6]' : 'bg-[#e2e4e4]'}`}>
+      <div className="relative aspect-[3/4] overflow-hidden rounded-[1.4rem] bg-[#faf6f0]">
         <img
           src={hamper.imageUrl}
           alt={hamper.title}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 font-body text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[#6d1130] shadow-sm">
-          {hamper.occasion}
-        </span>
       </div>
       <div className="px-2 pb-2 pt-5">
-        <h3 className="font-display text-xl font-semibold">{hamper.title}</h3>
+        <span className="inline-block rounded-full bg-[#fbe3e6] px-2.5 py-0.5 font-body text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[#6d1130]">
+          {hamper.occasion}
+        </span>
+        <h3 className="mt-2 font-display text-xl font-semibold">{hamper.title}</h3>
         <p className="mt-1 font-body text-xs font-light text-[#666666] line-clamp-2">{hamper.description}</p>
         {contentsPreview && (
           <p className="mt-1.5 font-body text-[0.7rem] italic text-[#8a8a8a] line-clamp-1">{contentsPreview}</p>
