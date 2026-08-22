@@ -65,11 +65,11 @@ export default function HamperCard({ hamper }: HamperCardProps) {
 
   return (
     <article className="product-card group rounded-3xl bg-white p-3 shadow-[0_10px_40px_rgba(100,45,55,0.06)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(100,45,55,0.12)]">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-[1.4rem] bg-[#faf6f0]">
+      <div className="relative aspect-[9/16] overflow-hidden rounded-[1.4rem] bg-[#faf6f0]">
         <img
           src={hamper.imageUrl}
           alt={hamper.title}
-          className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
       <div className="px-2 pb-2 pt-5">
