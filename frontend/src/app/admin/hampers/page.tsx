@@ -9,7 +9,7 @@ interface Hamper {
   _id: string;
   title: string;
   description: string;
-  price: number;
+  price?: number;
   imageUrl: string;
   occasion: string;
   contents: string[];
@@ -89,7 +89,7 @@ export default function HampersPage() {
     setForm({
       title: hamper.title,
       description: hamper.description,
-      price: String(hamper.price),
+      price: hamper.price !== undefined ? String(hamper.price) : '',
       occasion: hamper.occasion,
       isAvailable: hamper.isAvailable,
     });
@@ -231,14 +231,14 @@ export default function HampersPage() {
                 </div>
                 <div className="form-group row">
                   <div>
-                    <label>Price (₹)</label>
+                    <label>Price (₹, optional)</label>
                     <input
                       type="number"
                       min="0"
                       step="0.01"
+                      placeholder="Leave blank if TBD"
                       value={form.price}
                       onChange={(e) => setForm({ ...form, price: e.target.value })}
-                      required
                     />
                   </div>
                   <div>
@@ -352,7 +352,7 @@ export default function HampersPage() {
                           <span className={`badge ${h.isAvailable ? 'badge-available' : 'badge-hidden'}`}>
                             {h.isAvailable ? 'Available' : 'Hidden'}
                           </span>
-                          <span className="product-price">₹{h.price}</span>
+                          <span className="product-price">{h.price !== undefined ? `₹${h.price}` : 'Price TBD'}</span>
                           {h.contents?.length > 0 && (
                             <span className="product-price">{h.contents.length} item{h.contents.length === 1 ? '' : 's'} inside</span>
                           )}

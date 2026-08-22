@@ -5,6 +5,12 @@ import requireAuth from '../middleware/authMiddleware';
 
 const router = express.Router();
 
+const parsePrice = (raw: unknown): number | undefined => {
+  if (raw === undefined || raw === null || raw === '') return undefined;
+  const num = Number(raw);
+  return Number.isNaN(num) ? undefined : num;
+};
+
 const parseContents = (raw: unknown): string[] => {
   if (Array.isArray(raw)) return raw.filter((item): item is string => typeof item === 'string');
   if (typeof raw === 'string') {
@@ -55,7 +61,7 @@ router.post('/', requireAuth, upload.single('image'), async (req: Request, res: 
     const hamper = new Hamper({
       title,
       description,
-      price,
+      price: parsePrice(price),
       imageUrl,
       occasion,
       contents: parseContents(req.body.contents),
@@ -84,7 +90,7 @@ router.put('/:id', requireAuth, upload.single('image'), async (req: Request, res
     if (hamper) {
       hamper.title = title || hamper.title;
       hamper.description = description || hamper.description;
-      hamper.price = price || hamper.price;
+      if (price !== undefined) hamper.price = parsePrice(price);
       if (imageUrl) hamper.imageUrl = imageUrl;
       hamper.occasion = occasion || hamper.occasion;
       if (req.body.contents !== undefined) {

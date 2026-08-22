@@ -4,12 +4,19 @@ import { useRef, useState } from "react";
 import { Plus, Check } from "lucide-react";
 import gsap from "gsap";
 import { useCart } from "@/context/CartContext";
+import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
+
+const WHATSAPP_NUMBER = "918866836861";
+
+function waLink(message: string) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 
 export interface Hamper {
   _id: string;
   title: string;
   description: string;
-  price: number;
+  price?: number;
   imageUrl: string;
   occasion: string;
   contents: string[];
@@ -28,6 +35,8 @@ export default function HamperCard({ hamper }: HamperCardProps) {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const onAdd = () => {
+    if (hamper.price === undefined) return;
+
     addToCart({
       _id: hamper._id,
       title: hamper.title,
@@ -82,28 +91,41 @@ export default function HamperCard({ hamper }: HamperCardProps) {
           <p className="mt-1.5 font-body text-[0.7rem] italic text-[#8a8a8a] line-clamp-1">{contentsPreview}</p>
         )}
         <div className="mt-4 flex items-center justify-between gap-3">
-          <span className="font-body text-base font-semibold text-[#6d1130]">₹{hamper.price}</span>
-        </div>
-        <button
-          ref={btnRef}
-          onClick={onAdd}
-          className={`relative mt-3 flex w-full items-center justify-center gap-2 rounded-full py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors ${
-            added ? "bg-[#1fa855]" : "bg-[#e0186f] hover:bg-[#c01260]"
-          }`}
-        >
-          <span ref={flyRef} className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-body text-xs font-bold text-[#1fa855] opacity-0">
-            +1
+          <span className="font-body text-base font-semibold text-[#6d1130]">
+            {hamper.price !== undefined ? `₹${hamper.price}` : "Price on request"}
           </span>
-          {added ? (
-            <>
-              Added <Check size={14} />
-            </>
-          ) : (
-            <>
-              Add to cart <Plus size={14} />
-            </>
-          )}
-        </button>
+        </div>
+        {hamper.price !== undefined ? (
+          <button
+            ref={btnRef}
+            onClick={onAdd}
+            className={`relative mt-3 flex w-full items-center justify-center gap-2 rounded-full py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors ${
+              added ? "bg-[#1fa855]" : "bg-[#e0186f] hover:bg-[#c01260]"
+            }`}
+          >
+            <span ref={flyRef} className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-body text-xs font-bold text-[#1fa855] opacity-0">
+              +1
+            </span>
+            {added ? (
+              <>
+                Added <Check size={14} />
+              </>
+            ) : (
+              <>
+                Add to cart <Plus size={14} />
+              </>
+            )}
+          </button>
+        ) : (
+          <a
+            href={waLink(`Hi! I'd love to know the price for the "${hamper.title}" hamper.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-[#6d1130] py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#4d0c22]"
+          >
+            <WhatsAppIcon size={14} /> Ask for price
+          </a>
+        )}
       </div>
     </article>
   );
