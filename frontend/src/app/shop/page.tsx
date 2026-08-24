@@ -16,7 +16,7 @@ export default function ShopPage() {
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
-          setProducts(data);
+          setProducts(data.sort((a: Product, b: Product) => (a.price || 0) - (b.price || 0)));
         }
       })
       .catch(err => console.error("Error fetching products:", err));

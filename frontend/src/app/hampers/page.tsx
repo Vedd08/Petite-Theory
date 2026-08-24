@@ -15,7 +15,11 @@ export default function HampersPage() {
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
-          setHampers(data.filter((h: Hamper) => h.isAvailable));
+          setHampers(
+            data
+              .filter((h: Hamper) => h.isAvailable)
+              .sort((a: Hamper, b: Hamper) => (a.price || 0) - (b.price || 0))
+          );
         }
       })
       .catch(err => console.error("Error fetching hampers:", err));
