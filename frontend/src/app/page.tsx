@@ -8,11 +8,10 @@ import DripDivider from "@/components/home/DripDivider";
 import FeatureStrip from "@/components/home/FeatureStrip";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
 import MenuShowcase from "@/components/home/MenuShowcase";
-import { useCart, Product } from "@/context/CartContext";
+import { Product } from "@/components/home/ProductCard";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
-  const { addToCart } = useCart();
 
   useEffect(() => {
     // Fetch products
@@ -27,10 +26,6 @@ export default function Home() {
       .catch(err => console.error("Error fetching products:", err));
   }, []);
 
-  const handleAddToCart = (product: Product) => {
-    addToCart(product);
-  };
-
   return (
     <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
       <div className="relative bg-[#fbe3e6] ">
@@ -44,10 +39,7 @@ export default function Home() {
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
         <FeatureStrip />
 
-        <FeaturedProducts
-          products={products}
-          handleAddToCart={handleAddToCart}
-        />
+        <FeaturedProducts products={products} />
 
         <MenuShowcase />
 

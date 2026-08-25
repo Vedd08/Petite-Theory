@@ -9,7 +9,7 @@ interface Product {
   _id: string;
   title: string;
   description: string;
-  price: number;
+  price?: number;
   imageUrl: string;
   category: string;
   isAvailable: boolean;
@@ -84,7 +84,7 @@ export default function ProductsPage() {
     setForm({
       title: product.title,
       description: product.description,
-      price: String(product.price),
+      price: product.price !== undefined ? String(product.price) : '',
       category: product.category,
       isAvailable: product.isAvailable,
     });
@@ -203,14 +203,14 @@ export default function ProductsPage() {
             </div>
             <div className="form-group row">
               <div>
-                <label>Price (₹)</label>
+                <label>Price (₹, optional)</label>
                 <input
                   type="number"
                   min="0"
                   step="0.01"
+                  placeholder="Leave blank if TBD"
                   value={form.price}
                   onChange={(e) => setForm({ ...form, price: e.target.value })}
-                  required
                 />
               </div>
               <div>
@@ -289,7 +289,7 @@ export default function ProductsPage() {
                       <span className={`badge ${p.isAvailable ? 'badge-available' : 'badge-hidden'}`}>
                         {p.isAvailable ? 'Available' : 'Hidden'}
                       </span>
-                      <span className="product-price">₹{p.price}</span>
+                      <span className="product-price">{p.price !== undefined ? `₹${p.price}` : 'Price TBD'}</span>
                     </div>
                   </div>
                   <div className="product-actions">

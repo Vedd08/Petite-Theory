@@ -5,6 +5,12 @@ import requireAuth from '../middleware/authMiddleware';
 
 const router = express.Router();
 
+const parsePrice = (raw: unknown): number | undefined => {
+  if (raw === undefined || raw === null || raw === '') return undefined;
+  const num = Number(raw);
+  return Number.isNaN(num) ? undefined : num;
+};
+
 router.get('/seed-samples', async (req: Request, res: Response) => {
   const sampleProducts = [
     {
@@ -96,7 +102,7 @@ router.post('/', requireAuth, upload.single('image'), async (req: Request, res: 
     const product = new Product({
       title,
       description,
-      price,
+      price: parsePrice(price),
       imageUrl,
       category,
       isAvailable
@@ -124,7 +130,7 @@ router.put('/:id', requireAuth, upload.single('image'), async (req: Request, res
     if (product) {
       product.title = title || product.title;
       product.description = description || product.description;
-      product.price = price || product.price;
+      if (price !== undefined) product.price = parsePrice(price);
       if (imageUrl) product.imageUrl = imageUrl;
       product.category = category || product.category;
       if (isAvailable !== undefined) {

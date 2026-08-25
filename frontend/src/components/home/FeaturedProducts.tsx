@@ -2,17 +2,15 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Product } from "@/context/CartContext";
-import ProductCard from "./ProductCard";
+import ProductCard, { Product } from "./ProductCard";
 import Leaf from "./Leaf";
 import BerryBlob from "./BerryBlob";
 
 interface FeaturedProductsProps {
   products: Product[];
-  handleAddToCart: (product: Product) => void;
 }
 
-export default function FeaturedProducts({ products, handleAddToCart }: FeaturedProductsProps) {
+export default function FeaturedProducts({ products }: FeaturedProductsProps) {
   const featured = products.slice(0, 3);
 
   return (
@@ -37,7 +35,7 @@ export default function FeaturedProducts({ products, handleAddToCart }: Featured
       ) : (
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {featured.map((prod, index) => (
-            <ProductCard key={prod._id} product={prod} index={index} handleAddToCart={handleAddToCart} />
+            <ProductCard key={prod._id} product={prod} index={index} />
           ))}
         </div>
       )}

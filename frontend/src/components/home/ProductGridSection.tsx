@@ -2,18 +2,16 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Product } from "@/context/CartContext";
 import { useMemo, useState } from "react";
 import Leaf from "./Leaf";
 import BerryBlob from "./BerryBlob";
-import ProductCard from "./ProductCard";
+import ProductCard, { Product } from "./ProductCard";
 
 interface ProductGridSectionProps {
   title?: string;
   subtitle?: string;
   showHeading?: boolean;
   products: Product[];
-  handleAddToCart: (product: Product) => void;
 }
 
 export default function ProductGridSection({
@@ -21,7 +19,6 @@ export default function ProductGridSection({
   subtitle = "A little sweetness",
   showHeading = true,
   products,
-  handleAddToCart,
 }: ProductGridSectionProps) {
   const categories = useMemo(() => {
     const unique = Array.from(new Set(products.map((p) => p.category || "Cakes")));
@@ -80,7 +77,7 @@ export default function ProductGridSection({
         {visibleProducts.length === 0 ? (
            <p className="col-span-full text-center text-[#666666]">Loading our delicious menu...</p>
         ) : visibleProducts.map((prod, index) => (
-          <ProductCard key={prod._id} product={prod} index={index} handleAddToCart={handleAddToCart} />
+          <ProductCard key={prod._id} product={prod} index={index} />
         ))}
       </div>
     </section>

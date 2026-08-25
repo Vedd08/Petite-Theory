@@ -3,22 +3,48 @@
 import { useRef, useState } from "react";
 import { Plus, Check } from "lucide-react";
 import gsap from "gsap";
-import { Product } from "@/context/CartContext";
+import { useCart } from "@/context/CartContext";
+import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
+
+const WHATSAPP_NUMBER = "918866836861";
+
+function waLink(message: string) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+export interface Product {
+  _id: string;
+  title: string;
+  description: string;
+  price?: number;
+  imageUrl: string;
+  category: string;
+  isAvailable?: boolean;
+}
 
 interface ProductCardProps {
   product: Product;
   index?: number;
-  handleAddToCart: (product: Product) => void;
 }
 
-export default function ProductCard({ product, index = 0, handleAddToCart }: ProductCardProps) {
+export default function ProductCard({ product, index = 0 }: ProductCardProps) {
+  const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
   const btnRef = useRef<HTMLButtonElement>(null);
   const flyRef = useRef<HTMLSpanElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const onAdd = () => {
-    handleAddToCart(product);
+    if (product.price === undefined) return;
+
+    addToCart({
+      _id: product._id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      category: product.category,
+    });
     setAdded(true);
 
     if (btnRef.current) {
@@ -53,28 +79,41 @@ export default function ProductCard({ product, index = 0, handleAddToCart }: Pro
         <h3 className="font-display text-xl font-semibold">{product.title}</h3>
         <p className="mt-1 font-body text-xs font-light text-[#666666] line-clamp-2">{product.description}</p>
         <div className="mt-4 flex items-center justify-between gap-3">
-          <span className="font-body text-base font-semibold text-[#6d1130]">₹{product.price}</span>
-        </div>
-        <button
-          ref={btnRef}
-          onClick={onAdd}
-          className={`relative mt-3 flex w-full items-center justify-center gap-2 rounded-full py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors ${
-            added ? "bg-[#1fa855]" : "bg-[#e0186f] hover:bg-[#c01260]"
-          }`}
-        >
-          <span ref={flyRef} className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-body text-xs font-bold text-[#1fa855] opacity-0">
-            +1
+          <span className="font-body text-base font-semibold text-[#6d1130]">
+            {product.price !== undefined ? `₹${product.price}` : "Price on request"}
           </span>
-          {added ? (
-            <>
-              Added <Check size={14} />
-            </>
-          ) : (
-            <>
-              Add to cart <Plus size={14} />
-            </>
-          )}
-        </button>
+        </div>
+        {product.price !== undefined ? (
+          <button
+            ref={btnRef}
+            onClick={onAdd}
+            className={`relative mt-3 flex w-full items-center justify-center gap-2 rounded-full py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors ${
+              added ? "bg-[#1fa855]" : "bg-[#e0186f] hover:bg-[#c01260]"
+            }`}
+          >
+            <span ref={flyRef} className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 font-body text-xs font-bold text-[#1fa855] opacity-0">
+              +1
+            </span>
+            {added ? (
+              <>
+                Added <Check size={14} />
+              </>
+            ) : (
+              <>
+                Add to cart <Plus size={14} />
+              </>
+            )}
+          </button>
+        ) : (
+          <a
+            href={waLink(`Hi! I'd love to know the price for the "${product.title}" cake.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-[#6d1130] py-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-[#4d0c22]"
+          >
+            <WhatsAppIcon size={14} /> Ask for price
+          </a>
+        )}
       </div>
     </article>
   );
