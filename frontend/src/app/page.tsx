@@ -4,11 +4,18 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import HeroSection from "@/components/home/HeroSection";
-import DripDivider from "@/components/home/DripDivider";
+import DiwaliHero from "@/components/home/hero/DiwaliHero";
 import FeatureStrip from "@/components/home/FeatureStrip";
+import DiwaliEdit from "@/components/home/DiwaliEdit";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import DripDivider from "@/components/home/DripDivider";
+import BrandStory from "@/components/home/BrandStory";
 import MenuShowcase from "@/components/home/MenuShowcase";
+import TestimonialMarquee from "@/components/home/TestimonialMarquee";
+import VisitUs from "@/components/home/VisitUs";
+import PastelBackdrop from "@/components/festive/PastelBackdrop";
 import { Product } from "@/components/home/ProductCard";
+import { FESTIVE } from "@/config/theme";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,17 +34,20 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
-      <div className="relative bg-[#fbe3e6] ">
+    <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
+      <div className="relative bg-band ">
+        {FESTIVE && <PastelBackdrop />}
         <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
           <Navbar />
-          <HeroSection />
+          {FESTIVE ? <DiwaliHero /> : <HeroSection />}
         </div>
         <DripDivider flip />
       </div>
 
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">
         <FeatureStrip />
+
+        {FESTIVE && <DiwaliEdit />}
 
         <FeaturedProducts products={products} />
 

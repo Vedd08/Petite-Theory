@@ -5,6 +5,42 @@
   --font-brand: var(--font-logo), cursive;
   --font-display: var(--font-heading), serif;
   --font-body: var(--font-body), sans-serif;
+  
+  --color-band: #fbe3e6;
+  --color-band-ink: #6d1130;
+  --color-band-muted: #5b4048;
+  --color-band-accent: #d81159;
+  --color-surface: #ffffff;
+  --color-soft: #faf0f2;
+  --color-soft-from: #fbe3e6;
+  --color-soft-to: #f6d4da;
+  --color-nav: rgb(255 255 255 / 0.4);
+  
+  --color-gold: #C5A06A;
+  --color-gold-light: #E3C79A;
+  --color-rose-gold: #C9876F;
+  --color-raspberry: #A83258;
+  --color-deep-rose: #7B1E3A;
+  --color-dusty: #D59AAE;
+  --color-peach: #FBEFE6;
+  --color-lilac: #E4D2EC;
+  --color-mist: #D3E8E6;
+  --color-plum: #5B3A46;
+  --color-stage: #F7D5C9;
+}
+
+:root[data-theme="diwali"] {
+  --color-band: #F4DDE4;
+  --color-band-ink: #7B1E3A;
+  --color-band-muted: #5B3A46;
+  --color-band-accent: #A83258;
+  --color-surface: #FFF8F5;
+  --color-soft: #FBEDEF;
+  --color-soft-from: #FBEFE6;
+  --color-soft-to: #F4DDE4;
+  --color-nav: rgb(255 250 248 / 0.6);
+  
+  --bg-main: #FFF8F5;
 }
 
 @layer base {
@@ -27,6 +63,7 @@
     --font-logo: 'Amita', cursive;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Outfit', sans-serif;
+
   }
 
   * {
@@ -120,5 +157,21 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@layer utilities {
+  @keyframes hero-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
   }
 }

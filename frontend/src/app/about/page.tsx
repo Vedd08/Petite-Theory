@@ -9,7 +9,7 @@ import FeatureStrip from "@/components/home/FeatureStrip";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
+    <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
       <PageHeader
         eyebrow="Our story"
         title="About Petite थियोरी"
@@ -43,7 +43,7 @@ export default function AboutPage() {
 
         <FeatureStrip />
 
-        <section className="my-10 rounded-[2.5rem] bg-gradient-to-b from-[#fbe3e6] to-[#f6d4da] px-6 py-16 text-center sm:my-14 sm:px-10 sm:py-20">
+        <section className="my-10 rounded-[2.5rem] bg-gradient-to-b from-soft-from to-soft-to px-6 py-16 text-center sm:my-14 sm:px-10 sm:py-20">
           <h2 className="mx-auto max-w-lg font-display text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-[#6d1130] sm:text-5xl">
             Ready to taste the difference?
           </h2>

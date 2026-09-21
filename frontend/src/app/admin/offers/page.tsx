@@ -69,7 +69,7 @@ export default function OffersPage() {
     return () => clearTimeout(timer);
   }, [message]);
 
-  const fetchOffers = async () => {
+  async function fetchOffers() {
     try {
       setLoading(true);
       const res = await api.get('/offers');
@@ -158,7 +158,7 @@ export default function OffersPage() {
 
       resetForm();
       fetchOffers();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to save offer', error);
       setMessage({ type: 'error', text: error?.response?.data?.message || 'Failed to save offer.' });
     } finally {

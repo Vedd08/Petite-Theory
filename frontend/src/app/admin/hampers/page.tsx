@@ -49,7 +49,7 @@ export default function HampersPage() {
     return () => clearTimeout(timer);
   }, [message]);
 
-  const fetchHampers = async () => {
+  async function fetchHampers() {
     try {
       setLoading(true);
       const res = await api.get('/hampers');
@@ -162,7 +162,7 @@ export default function HampersPage() {
 
       resetForm();
       fetchHampers();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to save hamper', error);
       setMessage({ type: 'error', text: error?.response?.data?.message || 'Failed to save hamper.' });
     } finally {

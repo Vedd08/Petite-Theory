@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import WhatsAppIcon from "./WhatsAppIcon";
+import { FESTIVE } from "@/config/theme";
 
 const WHATSAPP_NUMBER = "918866836861";
 const WHATSAPP_DISPLAY = "+91 88668 36861";
@@ -55,7 +56,7 @@ export default function Footer() {
         </div>
       </section>
 
-      <footer id="footer" className="mt-4 rounded-t-[2.5rem] bg-[#faf0f2] px-6 pt-14 sm:px-10 lg:px-16">
+      <footer id="footer" className="mt-4 rounded-t-[2.5rem] bg-soft px-6 pt-14 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 pb-14 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-[1.3fr_0.9fr_1fr_1.1fr] lg:gap-10">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
@@ -149,6 +150,11 @@ export default function Footer() {
           </div>
         </div>
 
+        {FESTIVE && (
+          <div className="text-center sm:text-left font-display italic text-sm text-deep-rose pb-6">
+            Shubh Deepavali from Chef Priyanshi and the Petite थियोरी kitchen.
+          </div>
+        )}
         <div className="flex flex-col gap-4 border-t border-[#1a1a1a]/10 py-6 font-body text-[0.7rem] text-[#8a6a75] sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
             <span>© {new Date().getFullYear()} Petite थियोरी. All rights reserved.</span>

@@ -70,7 +70,7 @@ export default function Navbar() {
     <>
       <header
         ref={headerRef}
-        className="sticky top-4 z-50 flex items-center justify-between rounded-full border border-white/60 bg-white/40 px-4 py-3.5 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-6 mt-4 sm:px-6 sm:py-4 lg:px-10"
+        className="sticky top-4 z-50 flex items-center justify-between rounded-full border border-white/60 bg-nav px-4 py-3.5 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-6 mt-4 sm:px-6 sm:py-4 lg:px-10"
       >
         <Link href="/" className="shrink-0" aria-label="Petite Théorie home">
           <Image src="/logo-wordmark.png" alt="Petite थियोरी" width={1670} height={314} priority className="h-6 w-auto sm:h-7 lg:h-9" />

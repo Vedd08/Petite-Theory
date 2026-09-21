@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CartProvider } from "@/context/CartContext";
 import WhatsAppWidget from "@/components/shared/WhatsAppWidget";
+import { FESTIVE } from "@/config/theme";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme={FESTIVE ? "diwali" : undefined} suppressHydrationWarning>
       <body>
         <CartProvider>
           {children}

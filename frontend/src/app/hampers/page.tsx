@@ -26,7 +26,7 @@ export default function HampersPage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
+    <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
       <PageHeader
         eyebrow="Gift hampers"
         title="Curated for every celebration"

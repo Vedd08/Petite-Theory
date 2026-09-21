@@ -12,7 +12,7 @@ const contactMethods = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
+    <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
       <PageHeader
         eyebrow="Get in touch"
         title="Visit us"
@@ -39,7 +39,7 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="mt-16 flex flex-col items-center gap-6 rounded-[2.5rem] bg-gradient-to-b from-[#fbe3e6] to-[#f6d4da] px-6 py-14 text-center sm:px-10 sm:py-16">
+          <div className="mt-16 flex flex-col items-center gap-6 rounded-[2.5rem] bg-gradient-to-b from-soft-from to-soft-to px-6 py-14 text-center sm:px-10 sm:py-16">
             <span className="grid size-14 place-items-center rounded-full bg-white text-[#d81159]">
               <MapPin size={24} strokeWidth={1.6} />
             </span>

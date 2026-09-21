@@ -21,7 +21,7 @@ export default function MenuShowcase() {
     : menuCategories.slice(0, DEFAULT_VISIBLE_CATEGORIES);
 
   return (
-    <section id="menu" className="my-10 rounded-[2.5rem] bg-gradient-to-b from-[#fbe3e6] to-[#f6d4da] px-6 py-16 sm:my-14 sm:px-10 sm:py-20 lg:px-16">
+    <section id="menu" className="my-10 rounded-[2.5rem] bg-gradient-to-b from-soft-from to-soft-to px-6 py-16 sm:my-14 sm:px-10 sm:py-20 lg:px-16">
       <div className="mx-auto max-w-xl text-center">
         <p className="mb-4 font-body text-[0.68rem] uppercase tracking-[0.25em] text-[#a1284f]">The full menu</p>
         <h2 className="font-display text-3xl font-semibold leading-[1.05] tracking-[-0.03em] text-[#6d1130] sm:text-5xl">

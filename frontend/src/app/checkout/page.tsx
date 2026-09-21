@@ -61,7 +61,7 @@ export default function CheckoutPage() {
   const labelClass = "mb-1.5 block font-body text-xs font-semibold uppercase tracking-[0.1em] text-[#5b4048]";
 
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
+    <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
       <PageHeader
         eyebrow="Almost there"
         title="Checkout"

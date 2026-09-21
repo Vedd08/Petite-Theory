@@ -34,15 +34,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    setIsMounted(true);
     const savedCart = localStorage.getItem('bloomCakesCart');
     if (savedCart) {
       try {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setCart(JSON.parse(savedCart));
-      } catch (e) {
-        console.error('Failed to parse cart', e);
+      } catch {
+        console.error('Failed to parse cart from local storage');
       }
     }
+    setIsMounted(true);
   }, []);
 
   // Save cart to localStorage on change

@@ -22,7 +22,7 @@ export default function ShopPage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#1a1a1a]">
+    <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
       <PageHeader
         eyebrow="Full menu"
         title="All our creations"

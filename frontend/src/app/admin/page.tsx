@@ -36,17 +36,7 @@ export default function ProductsPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const formCardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    if (!message) return;
-    const timer = setTimeout(() => setMessage(null), 3500);
-    return () => clearTimeout(timer);
-  }, [message]);
-
-  const fetchProducts = async () => {
+  async function fetchProducts() {
     try {
       setLoading(true);
       const res = await api.get('/products');
@@ -58,6 +48,17 @@ export default function ProductsPage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    if (!message) return;
+    const timer = setTimeout(() => setMessage(null), 3500);
+    return () => clearTimeout(timer);
+  }, [message]);
 
   const categories = useMemo(() => {
     return Array.from(new Set(products.map((p) => p.category).filter(Boolean)));
@@ -136,7 +137,7 @@ export default function ProductsPage() {
 
       resetForm();
       fetchProducts();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to save product', error);
       setMessage({ type: 'error', text: error?.response?.data?.message || 'Failed to save product.' });
     } finally {
