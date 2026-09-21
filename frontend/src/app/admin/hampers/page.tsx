@@ -162,7 +162,7 @@ export default function HampersPage() {
 
       resetForm();
       fetchHampers();
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error('Failed to save hamper', error);
       setMessage({ type: 'error', text: error?.response?.data?.message || 'Failed to save hamper.' });
     } finally {

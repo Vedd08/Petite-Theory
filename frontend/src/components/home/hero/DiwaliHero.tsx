@@ -125,8 +125,7 @@ export default function DiwaliHero() {
             <div 
               key={banner.id}
               aria-hidden={!isActive}
-              // @ts-expect-error React 19 boolean inert
-              inert={!isActive}
+              inert={!isActive ? true : undefined}
               className={`col-start-1 row-start-1 flex flex-col ${isDesktop ? "items-start" : "items-center"} transition-opacity ${prefersReducedMotion ? 'duration-150' : 'duration-900'} ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
             >
               <span className="font-body text-xs tracking-[0.2em] text-plum">
@@ -321,8 +320,7 @@ export default function DiwaliHero() {
                 aria-roledescription="slide"
                 aria-label={`${i + 1} of ${n}`}
                 aria-hidden={!isActive}
-                // @ts-expect-error React 19 boolean inert
-                inert={!isActive}
+                inert={!isActive ? true : undefined}
                 className={`absolute inset-y-0 right-0 h-full w-full lg:w-auto lg:aspect-[3/2] transition-opacity ${prefersReducedMotion ? 'duration-150' : 'duration-900 ease-in-out'} ${isActive ? 'opacity-100 z-0' : 'opacity-0 z-0 pointer-events-none'}`}
               >
                 {/* Desktop layout uses mask, mobile does not. We'll use two images to perfectly match the CSS requirements since mask-image on mobile isn't wanted */}
@@ -331,7 +329,6 @@ export default function DiwaliHero() {
                   alt={banner.alt}
                   fill
                   sizes="(min-width: 1024px) 1140px, 100vw"
-                  // @ts-expect-error Next 16 preload
                   preload={i === 0 ? true : undefined}
                   className="hidden lg:block object-cover object-[center_center] [mask-image:linear-gradient(to_right,transparent_0%,#000_20%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,#000_20%)]"
                 />
@@ -340,7 +337,6 @@ export default function DiwaliHero() {
                   alt={banner.alt}
                   fill
                   sizes="(min-width: 1024px) 1140px, 100vw"
-                  // @ts-expect-error Next 16 preload
                   preload={i === 0 ? true : undefined}
                   className="lg:hidden object-cover object-[100%_50%]"
                 />

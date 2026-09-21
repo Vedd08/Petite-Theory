@@ -28,7 +28,7 @@ export default function SettingsPage() {
       setTimeout(() => {
         logout();
       }, 2000);
-    } catch (error: unknown) {
+    } catch (error: any) {
       setMessage({
         type: 'error',
         text: error.response?.data?.message || 'Failed to update credentials.',
