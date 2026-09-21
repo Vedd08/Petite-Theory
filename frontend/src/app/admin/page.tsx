@@ -137,9 +137,10 @@ export default function ProductsPage() {
 
       resetForm();
       fetchProducts();
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
       console.error('Failed to save product', error);
-      setMessage({ type: 'error', text: error?.response?.data?.message || 'Failed to save product.' });
+      setMessage({ type: 'error', text: err.response?.data?.message || 'Failed to save product.' });
     } finally {
       setSaving(false);
     }

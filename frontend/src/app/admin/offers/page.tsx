@@ -158,9 +158,10 @@ export default function OffersPage() {
 
       resetForm();
       fetchOffers();
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
       console.error('Failed to save offer', error);
-      setMessage({ type: 'error', text: error?.response?.data?.message || 'Failed to save offer.' });
+      setMessage({ type: 'error', text: err.response?.data?.message || 'Failed to save offer.' });
     } finally {
       setSaving(false);
     }

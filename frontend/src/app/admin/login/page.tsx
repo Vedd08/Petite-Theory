@@ -26,8 +26,9 @@ export default function LoginPage() {
     try {
       await login(username, password);
       router.push('/admin');
-    } catch (err: any) {
-      setError(err?.response?.data?.message || 'Something went wrong. Please try again.');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      setError(err.response?.data?.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
     }

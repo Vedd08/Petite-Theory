@@ -28,10 +28,11 @@ export default function SettingsPage() {
       setTimeout(() => {
         logout();
       }, 2000);
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
       setMessage({
         type: 'error',
-        text: error.response?.data?.message || 'Failed to update credentials.',
+        text: err.response?.data?.message || 'Failed to update credentials.',
       });
     } finally {
       setSaving(false);

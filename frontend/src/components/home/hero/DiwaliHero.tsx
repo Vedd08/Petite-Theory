@@ -27,6 +27,7 @@ export default function DiwaliHero() {
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // eslint-disable-next-line
     setPrefersReducedMotion(reduced);
 
     const observer = new IntersectionObserver(

@@ -15,7 +15,7 @@ export default function DiwaliEdit() {
         aria-hidden="true" 
       />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="relative z-10">
         {/* Header */}
         <div className="text-center mb-12 lg:mb-16">
           <p className="font-body text-[0.68rem] uppercase tracking-[0.25em] text-deep-rose/70 mb-4">
@@ -30,7 +30,7 @@ export default function DiwaliEdit() {
         </div>
 
         {/* Cards Row/Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar lg:grid lg:grid-cols-4 gap-5 pb-8 lg:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0">
+        <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar lg:grid lg:grid-cols-4 gap-5 pb-8 lg:pb-0 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0">
           {heroPosters.map((poster) => (
             <Link
               key={poster.id}
