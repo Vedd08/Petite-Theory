@@ -10,26 +10,26 @@ export type HeroPoster = {
 export const heroPosters: HeroPoster[] = [
   {
     id: "festive-feast",
-    image: "/hero/diwali/1789973977514.webp",
-    alt: "The Festive Feast hamper featuring a selection of Diwali treats. ₹1850",
+    image: "/hero/diwali/festive-feast.webp",
+    alt: "The Festive Feast Diwali Celebration Collection: twelve curated dates, truffles and chocolates, ₹1,200",
     href: "/hampers",
   },
   {
     id: "parampara",
-    image: "/hero/diwali/1789973984651.webp",
-    alt: "Parampara Diwali hamper box with traditional sweets and snacks. ₹1250",
+    image: "/hero/diwali/parampara.webp",
+    alt: "Parampara festive hamper with assorted brownies, chocolates, cookies and granola, ₹1,650",
     href: "/hampers",
   },
   {
     id: "utsav-brownie",
-    image: "/hero/diwali/1789973992028.webp",
-    alt: "Utsav Brownie box for Diwali celebrations. ₹850",
+    image: "/hero/diwali/utsav-brownie.webp",
+    alt: "Utsav Brownie box with six assorted brownies, ₹800",
     href: "/hampers",
   },
   {
     id: "mini-shagun",
-    image: "/hero/diwali/1789974003592.webp",
-    alt: "Mini Shagun Diwali hamper, perfect for gifting. ₹600",
+    image: "/hero/diwali/mini-shagun.webp",
+    alt: "The Mini Shagun chocolate gift box with six chocolates, ₹500",
     href: "/hampers",
   },
 ];
