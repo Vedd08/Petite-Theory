@@ -28,9 +28,9 @@ export default function HampersPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-surface text-[#1a1a1a]">
       <PageHeader
-        eyebrow="Gift hampers"
-        title="Curated for every celebration"
-        subtitle="Ready-to-gift boxes for festivals, birthdays, and everything worth celebrating."
+        eyebrow="The Diwali Edit · 2026"
+        title="Festive moments, sweeter together"
+        subtitle="Celebrate the festival of lights with our handcrafted, premium gift boxes."
       />
 
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-14">

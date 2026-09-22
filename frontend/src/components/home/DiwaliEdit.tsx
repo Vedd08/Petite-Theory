@@ -35,14 +35,14 @@ export default function DiwaliEdit() {
             <Link
               key={poster.id}
               href="/hampers"
-              className="group relative block aspect-[4/5] rounded-[1.25rem] overflow-hidden ring-1 ring-gold/40 shadow-[0_18px_40px_rgba(123,30,58,0.14)] transition-transform duration-300 hover:-translate-y-1 basis-[72%] sm:basis-[44%] shrink-0 snap-start"
+              className="group relative block aspect-[4/5] rounded-[1.25rem] overflow-hidden bg-[#faf6f0] p-4 flex items-center justify-center ring-1 ring-gold/40 shadow-[0_18px_40px_rgba(123,30,58,0.14)] transition-transform duration-300 hover:-translate-y-1 basis-[72%] sm:basis-[44%] shrink-0 snap-start"
             >
               <Image
                 src={poster.image}
                 alt={poster.alt}
                 fill
                 sizes="(min-width: 1024px) 25vw, 72vw"
-                className="object-cover"
+                className="object-contain p-4"
                 loading="lazy"
               />
             </Link>
